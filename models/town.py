@@ -7,9 +7,15 @@ class Town(db.Model):
 	name = db.Column(db.String(500), unique=True)
 	region = db.Column(db.String(500))
 
-	def __init__(self, name, town, status):
+	def __init__(self, name, region):
 		self.name = name
 		self.region = region
 
 	def __repr__(self):
 		return '<Town %r>' % self.name
+
+
+def add_town_db(town):
+	db.session.add(Town(name=town['name'], region=town['region']))
+	db.session.commit()
+	return True

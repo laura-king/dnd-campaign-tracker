@@ -15,3 +15,9 @@ class Person(db.Model):
 
 	def __repr__(self):
 		return '<Person %r>' % self.name
+
+
+def add_person_db(person):
+	db.session.add(Person(name=person['name'], town=person['town'], status=person['status']))
+	db.session.commit()
+	return True
