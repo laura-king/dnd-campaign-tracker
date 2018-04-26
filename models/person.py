@@ -31,21 +31,36 @@ def get_information(id):
 
 #Gets all information about multiple people in the database based on their id's
 def get_some_people(people_ids):
-	all_people = []
+	all_people = {}
 	for person_id in people_ids:
-		person_info = get_information(person_id)
-		if person_info:
-			all_people.append(person_info)
-	return {'people' : all_people}
+		all_people[person_id] = get_information(person_id)
+	return all_people
 
 #Gets information about all people in database
 def get_all_people():
-	all_people = []
+	all_people = {}
 	people = Person.query.all()
 	for person in people:
-		all_people.append(dict_person(person))
-	return {'people' : all_people}
+		all_people[person.id] = dict_person(person)
+	return all_people
+
+#Gets all townspeople based on a town id
+def get_townspeople(town_id):
+	all_people = {}
+	people = Person.query.filter_by(town=town_id).all()
+	for person in people:
+		all_people[person.id] = dict_person(person)
+	return all_people
+
+#Deletes a person from the db based on id
+def delete_person(person_id):
+	to_delete = Person.query.filter_by(id=person_id).first()
+	db.session.delete(to_delete)
+	db.session.commit()
+	return True
+
+###  Helper Functions  ###
 
 #Creates a dictionary out of a Person object
 def dict_person(person):
-	return {'name':person.name, 'town':person.town, 'status':person.status}
+	return {'id':person.id, 'name':person.name, 'town':person.town, 'status':person.status}

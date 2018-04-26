@@ -24,6 +24,24 @@ def add_town_db(town):
 def get_information(id):
 	town = Town.query.filter_by(id=id).first()
 	if town:
-		return {'name':town.name, 'region':town.region}
+		return dict_town(town)
 	return None
 
+#Gets all information about multiple people in the database based on their id's
+def get_some_towns(town_ids):
+	all_towns = {}
+	for town_id in town_ids:
+		all_towns[town_id] = get_information(town_id)
+	return all_towns
+
+#Gets information about all people in database
+def get_all_towns():
+	all_towns = {}
+	towns = Town.query.all()
+	for town in towns:
+		all_towns[town.id] = dict_town(town)
+	return all_towns
+
+#Creates a dictionary out of a Town object
+def dict_town(town):
+	return {'id':town.id, 'name':town.name, 'region':town.region}

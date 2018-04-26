@@ -39,14 +39,12 @@ def display_people():
 
 @interact.route('/delete_person/<person_id>', methods=['DELETE'])
 def delete_person(person_id):
-	if person.delete_person(person_id)
-		return 200_RESPONSE
 	return 400_RESPONSE
 
 
 #### Town Endpoints ####
 
-#Using an ID, returns information about one town
+#Using an ID, provide information about a town
 @interact.route('/display_town/<town_id>', methods=['GET'])
 def display_town(town_id):
 	town_info = town.get_information(town_id)
@@ -63,39 +61,3 @@ def add_town():
 		if town.add_town_db(town_json):
 			return 200_RESPONSE
 	return 400_RESPONSE
-
-#Using a town ID, returns information about all people in town
-@interact.route('/display_townspeople/<town_id>', methods=['POST'])
-def display_townspeople(town_id):
-	townspeople = people.get_townspeople(town_id)
-	if townspeople:
-		return townspeople
-	return 400_RESPONSE
-
-#Using an ID, provide information about either all people or a subset based on person id
-@interact.route('/display_towns', methods=['GET', 'POST'])
-def display_people():
-	town_info = None
-	if request.method == 'GET':
-		town_info = town.get_all_towns()
-	elif request.method == 'POST':
-		if request.is_json:
-			town_info = town.get_some_towns(request.get_json())
-	if town_info:
-		return jsonify(town_info)
-	return 400_RESPONSE
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
