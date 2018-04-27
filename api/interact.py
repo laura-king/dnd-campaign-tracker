@@ -86,6 +86,14 @@ def display_people():
 	return 400_RESPONSE
 
 
+@interact.route('/delete_town/<town_id>', methods=['DELETE'])
+def delete_town(person_id):
+	if town.delete_town(town_id)
+		return 200_RESPONSE
+	# TODO : delete the people inside of the town too?
+	return 400_RESPONSE
+
+
 
 
 

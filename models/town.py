@@ -42,6 +42,14 @@ def get_all_towns():
 		all_towns[town.id] = dict_town(town)
 	return all_towns
 
+#Deletes a town from the db based on id
+def delete_town(town_id):
+	to_delete = Town.query.filter_by(id=town_id).first()
+	db.session.delete(to_delete)
+	db.session.commit()
+	return True
+
+
 #Creates a dictionary out of a Town object
 def dict_town(town):
 	return {'id':town.id, 'name':town.name, 'region':town.region}
