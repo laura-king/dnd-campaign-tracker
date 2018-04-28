@@ -5,7 +5,7 @@ from flask import Flask, render_template, request
 
 from models.shared import db
 from models import person, town
-from api import interact
+from api.src import interact
 
 
 #start and configure app
