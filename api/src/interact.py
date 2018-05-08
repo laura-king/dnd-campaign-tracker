@@ -59,7 +59,6 @@ def display_town(town_id):
 def add_town():
 	if request.is_json:
 		town_json = request.get_json()
-		print(town_json)
 		if town.add_town_db(town_json):
 			return RESPONSE_200
 	return RESPONSE_400

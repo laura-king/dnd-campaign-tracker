@@ -16,9 +16,10 @@ class Town(db.Model):
 
 #Adds the town into the database 
 def add_town_db(town):
-	db.session.add(Town(name=town['name'], region=town['region']))
+	created_town = Town(name=town["name"], region=town["region"])
+	db.session.add(created_town)
 	db.session.commit()
-	return True
+	return created_town
 
 #Gets all information about a person in the database
 def get_information(id):
