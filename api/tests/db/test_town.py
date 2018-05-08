@@ -1,7 +1,4 @@
-import os
-
-print(os.getcwd())
-from api.tests import test_api
+import test_api
 import requests, json
 
 
