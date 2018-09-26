@@ -13,7 +13,6 @@ class APITest(LiveServerTestCase):
         db.init_app(app)
 
         return app
-'''
     def setUp(self):
 
         db.create_all()
@@ -22,4 +21,3 @@ class APITest(LiveServerTestCase):
 
         db.session.remove()
         db.drop_all()
-'''

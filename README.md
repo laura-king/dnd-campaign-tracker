@@ -1,17 +1,19 @@
-Start: 
+
+
+## Start
 -initialize the database by running the init-db.py file
 -Run the application by running app.py
 
-Assumptions:
+## Assumptions
 -There is a database created in mysql for the data
 -There is a mysql user with privileges to edit the database with their credentials in the app.cfg file
 
-Dependencies:
+## Dependencies
 -mysql
 -flask
 -python3
 
-Commands:
+## Commands
 - brew install python3
 - brew install mysql
 - pip3 install flask
